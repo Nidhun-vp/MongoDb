@@ -1,0 +1,433 @@
+Microsoft Windows [Version 10.0.22000.2295]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\nidhun>musql -u root -p
+'musql' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\nidhun>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use mern;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_mern |
++----------------+
+| colleges       |
+| employee       |
+| student        |
++----------------+
+3 rows in set (0.01 sec)
+
+mysql> select * from colleges;
++------------+---------+-------------------------+----------------+
+| college_id | college | college_name            | no_of_students |
++------------+---------+-------------------------+----------------+
+|       1000 | CET     | engg college trivandrum |            800 |
+|       1020 | GEC     | engg college thrissur   |           1800 |
++------------+---------+-------------------------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> create table customers(id int primary key,name varchar(20),age int(3));
+Query OK, 0 rows affected, 1 warning (0.15 sec)
+
+mysql> create table products(custome_id int,name varchar(100),foreign key(customer_id) references customers(id));
+ERROR 1072 (42000): Key column 'customer_id' doesn't exist in table
+mysql> create table products(customer_id int,name varchar(100),foreign key(customer_id) references customers(id));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc products;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| customer_id | int          | YES  | MUL | NULL    |       |
+| name        | varchar(100) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc customers;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into customers(100,'john',25);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '100,'john',25)' at line 1
+mysql> insert into customers values(100,'john',25);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customers values(102,'helena',28);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customers values(103,'naveen',34);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customers values(104,'vinod',32);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customers values(101,'deepak',21);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customers values(105,'kiran',24);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into products values(100,'cpu');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into products values(102,'keyboard');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into products values(103,'mouse');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into products values(104,'monitor');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into products values(105,'printer');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from customers;
++-----+--------+------+
+| id  | name   | age  |
++-----+--------+------+
+| 100 | john   |   25 |
+| 101 | deepak |   21 |
+| 102 | helena |   28 |
+| 103 | naveen |   34 |
+| 104 | vinod  |   32 |
+| 105 | kiran  |   24 |
++-----+--------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from products;
++-------------+----------+
+| customer_id | name     |
++-------------+----------+
+|         100 | cpu      |
+|         102 | keyboard |
+|         103 | mouse    |
+|         104 | monitor  |
+|         105 | printer  |
++-------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> insert into products values(101,'joystick');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from products;
++-------------+----------+
+| customer_id | name     |
++-------------+----------+
+|         100 | cpu      |
+|         102 | keyboard |
+|         103 | mouse    |
+|         104 | monitor  |
+|         105 | printer  |
+|         101 | joystick |
++-------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from customers;
++-----+--------+------+
+| id  | name   | age  |
++-----+--------+------+
+| 100 | john   |   25 |
+| 101 | deepak |   21 |
+| 102 | helena |   28 |
+| 103 | naveen |   34 |
+| 104 | vinod  |   32 |
+| 105 | kiran  |   24 |
++-----+--------+------+
+6 rows in set (0.00 sec)
+
+mysql> insert into products values(108,'processor');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`mern`.`products`, CONSTRAINT `products_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`))
+mysql> create table Students1(student_id int,name varchar(50));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table department(student_id int(),department varchar(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '),department varchar(50))' at line 1
+mysql> create table department(student_id int(3),department varchar(50));
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> insert into Student1 values(1000,'A');
+ERROR 1146 (42S02): Table 'mern.student1' doesn't exist
+mysql> insert into Students1 values(1000,'A');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Students1 values(1001,'B');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Students1 values(1002,'c');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Students1 values(1004,'D');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Students1 values(1005,'E');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Department values(1004,'mathematics');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Department values(1005,'mathematics');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Department values(1006,'history');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Department values(1007,'physics');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Department values(1008,'computerscience');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Students1;
++------------+------+
+| student_id | name |
++------------+------+
+|       1000 | A    |
+|       1001 | B    |
+|       1002 | c    |
+|       1004 | D    |
+|       1005 | E    |
++------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from department;
++------------+-----------------+
+| student_id | department      |
++------------+-----------------+
+|       1004 | mathematics     |
+|       1005 | mathematics     |
+|       1006 | history         |
+|       1007 | physics         |
+|       1008 | computerscience |
++------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from students1 inner join department on students1.student_id=department.student_id;
++------------+------+------------+-------------+
+| student_id | name | student_id | department  |
++------------+------+------------+-------------+
+|       1004 | D    |       1004 | mathematics |
+|       1005 | E    |       1005 | mathematics |
++------------+------+------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from students1 left join department on students1.student_id=department.student_id;
++------------+------+------------+-------------+
+| student_id | name | student_id | department  |
++------------+------+------------+-------------+
+|       1000 | A    |       NULL | NULL        |
+|       1001 | B    |       NULL | NULL        |
+|       1002 | c    |       NULL | NULL        |
+|       1004 | D    |       1004 | mathematics |
+|       1005 | E    |       1005 | mathematics |
++------------+------+------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from students1 right join department on students1.student_id=department.student_id;
++------------+------+------------+-----------------+
+| student_id | name | student_id | department      |
++------------+------+------------+-----------------+
+|       1004 | D    |       1004 | mathematics     |
+|       1005 | E    |       1005 | mathematics     |
+|       NULL | NULL |       1006 | history         |
+|       NULL | NULL |       1007 | physics         |
+|       NULL | NULL |       1008 | computerscience |
++------------+------+------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from students1 rightouter join department on students1.student_id=department.student_id;
+ERROR 1054 (42S22): Unknown column 'students1.student_id' in 'on clause'
+mysql> select * from students1 rightouter join department on students1.student_id=department.student_id;
+ERROR 1054 (42S22): Unknown column 'students1.student_id' in 'on clause'
+mysql> create table meals(mealName varchar());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '))' at line 1
+mysql> create table meals(mealName varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table Drinks(drinkName varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into meals values('Orange juice';)
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+    -> insert into meals values('Orange juice');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+insert into meals values('Orange juice')' at line 1
+mysql> insert into meals values('omlet');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into meals values('rice');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into meals values('pickle');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Drinks values('orange juice');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Drinks values('apple juice');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Drinks values('lemon juice');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from meals;
++----------+
+| mealName |
++----------+
+| omlet    |
+| rice     |
+| pickle   |
++----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Drinks;
++--------------+
+| drinkName    |
++--------------+
+| orange juice |
+| apple juice  |
+| lemon juice  |
++--------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from meals cross join Drinks;
++----------+--------------+
+| mealName | drinkName    |
++----------+--------------+
+| pickle   | orange juice |
+| rice     | orange juice |
+| omlet    | orange juice |
+| pickle   | apple juice  |
+| rice     | apple juice  |
+| omlet    | apple juice  |
+| pickle   | lemon juice  |
+| rice     | lemon juice  |
+| omlet    | lemon juice  |
++----------+--------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from department;
++------------+-----------------+
+| student_id | department      |
++------------+-----------------+
+|       1004 | mathematics     |
+|       1005 | mathematics     |
+|       1006 | history         |
+|       1007 | physics         |
+|       1008 | computerscience |
++------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Students1;
++------------+------+
+| student_id | name |
++------------+------+
+|       1000 | A    |
+|       1001 | B    |
+|       1002 | c    |
+|       1004 | D    |
+|       1005 | E    |
++------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from students1 natural join department;
++------------+------+-------------+
+| student_id | name | department  |
++------------+------+-------------+
+|       1004 | D    | mathematics |
+|       1005 | E    | mathematics |
++------------+------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where salary>(avg(salary) from employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from employee)' at line 1
+mysql> show tables;
++----------------+
+| Tables_in_mern |
++----------------+
+| colleges       |
+| customers      |
+| department     |
+| drinks         |
+| employee       |
+| meals          |
+| products       |
+| student        |
+| students1      |
++----------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from employee;
++------+----------+--------------+--------+------------------------+
+| id   | Name     | place        | salary | email                  |
++------+----------+--------------+--------+------------------------+
+| 1000 | Abhi     | Eranad       |  18000 | abhi78@cltoneteam.com  |
+| 1001 | anjana   | Thamarassery |  16000 | anju867@cltoneteam.com |
+| 1003 | max      | Texas        |  21000 | max24@cltoneteam.com   |
+| 1006 | jonathan | sanfrancisco |  29000 | jona48@cltoneteam.com  |
+| 1004 | farhan   | columbo      |   9000 | faru53@cltoneteam.com  |
+| 1003 | max      | venad        |  18000 | max34@cltoneteam.com   |
++------+----------+--------------+--------+------------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee where salary>(avg(salary) from employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from employee)' at line 1
+mysql> select * from employee where salary>(select avg(salary) from employee);
++------+----------+--------------+--------+-----------------------+
+| id   | Name     | place        | salary | email                 |
++------+----------+--------------+--------+-----------------------+
+| 1003 | max      | Texas        |  21000 | max24@cltoneteam.com  |
+| 1006 | jonathan | sanfrancisco |  29000 | jona48@cltoneteam.com |
++------+----------+--------------+--------+-----------------------+
+2 rows in set (0.00 sec)
+
+mysql> select avg(salary) from employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select avg(salary) from employee;
++-------------+
+| avg(salary) |
++-------------+
+|  18500.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where salary>(select avg(salary) from employee);
++------+----------+--------------+--------+-----------------------+
+| id   | Name     | place        | salary | email                 |
++------+----------+--------------+--------+-----------------------+
+| 1003 | max      | Texas        |  21000 | max24@cltoneteam.com  |
+| 1006 | jonathan | sanfrancisco |  29000 | jona48@cltoneteam.com |
++------+----------+--------------+--------+-----------------------+
+2 rows in set (0.00 sec)
+
+mysql> update employee set salary=salary+5000 where age in(select salary from employee where salary<=18500);
+ERROR 1054 (42S22): Unknown column 'age' in 'IN/ALL/ANY subquery'
+mysql> update employee set salary=salary+5000 where salary in(select salary from employee where salary<=18500);
+ERROR 1093 (HY000): You can't specify target table 'employee' for update in FROM clause
+mysql> update employee set salary=salary+5000 where salary in(select salary from employee_copy where salary<=18500);
+ERROR 1146 (42S02): Table 'mern.employee_copy' doesn't exist
+mysql> update employee set salary=salary+5000 where salary in(select salary from employee where salary<=18500);
+ERROR 1093 (HY000): You can't specify target table 'employee' for update in FROM clause
+mysql> update employee set salary=salary+5000 where salary in (select salary from employee where salary<=18500);
+ERROR 1093 (HY000): You can't specify target table 'employee' for update in FROM clause
+mysql>

@@ -1,0 +1,664 @@
+Microsoft Windows [Version 10.0.22000.2295]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\nidhun>my sql -u root -p
+'my' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\nidhun>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| customers          |
+| exam               |
+| fr                 |
+| gfg                |
+| information_schema |
+| mern               |
+| mysql              |
+| nidhun             |
+| nidhun_69          |
+| nndb               |
+| performance_schema |
+| sys                |
++--------------------+
+12 rows in set (0.01 sec)
+
+mysql> use mern;
+Database changed
+mysql> select * from employee;
++----------+------+--------------+--------+-------------------+
+| Name     | age  | place        | salary | email             |
++----------+------+--------------+--------+-------------------+
+| Abhi     |   21 | Eranad       |  18000 | abhi78@gmail.com  |
+| anjana   |   24 | Thamarassery |  16000 | anju867@gmail.com |
+| max      |   22 | Texas        |  21000 | max24@gmail.com   |
+| jonathan |   28 | sanfrancisco |  29000 | jona48@gmail.com  |
+| farhan   |   18 | columbo      |   9000 | faru53@gmail.com  |
++----------+------+--------------+--------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----------+------+--------------+--------+-------------------+
+| Name     | age  | place        | salary | email             |
++----------+------+--------------+--------+-------------------+
+| Abhi     |   21 | Eranad       |  18000 | abhi78@gmail.com  |
+| anjana   |   24 | Thamarassery |  16000 | anju867@gmail.com |
+| max      |   22 | Texas        |  21000 | max24@gmail.com   |
+| jonathan |   28 | sanfrancisco |  29000 | jona48@gmail.com  |
+| farhan   |   18 | columbo      |   9000 | faru53@gmail.com  |
++----------+------+--------------+--------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> select max(salary) from employee;
++-------------+
+| max(salary) |
++-------------+
+|       29000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary) from employee;
++-------------+
+| min(salary) |
++-------------+
+|        9000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(age) from employee where place='Ernad;
+    '> ;
+    '> ^C
+mysql> select min(age) from employee where place='Ernad';
++----------+
+| min(age) |
++----------+
+|     NULL |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select min(age) from employee where place='Eranad';
++----------+
+| min(age) |
++----------+
+|       21 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select max(age) from employee where age>=21;
++----------+
+| max(age) |
++----------+
+|       28 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(age) from employee where age>=21;
++------------+
+| count(age) |
++------------+
+|          4 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select count(age) from employee;
++------------+
+| count(age) |
++------------+
+|          5 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(age) from employee;
++----------+
+| avg(age) |
++----------+
+|  22.6000 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select sum(age) from employee;
++----------+
+| sum(age) |
++----------+
+|      113 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary) from employee;
++-------------+
+| sum(salary) |
++-------------+
+|       93000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select name,salary from employee salary between(10000 and 30000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between(10000 and 30000)' at line 1
+mysql> select name,salary from employee salary between('10000 and 30000');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between('10000 and 30000')' at line 1
+mysql> select name,salary from employee salary between 10000 and 30000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between 10000 and 30000' at line 1
+mysql> select name,salary from employee salary between '10000' and '30000';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between '10000' and '30000'' at line 1
+mysql> select name,salary from employee salary where between 10000 and 30000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between 10000 and 30000' at line 1
+mysql> select name,salary from employee salary where between '10000' and '30000';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between '10000' and '30000'' at line 1
+mysql> select name,salary from employee salary where between 10000 and 30000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between 10000 and 30000' at line 1
+mysql> select name,salary from employee where salary between 10000 and 30000;
++----------+--------+
+| name     | salary |
++----------+--------+
+| Abhi     |  18000 |
+| anjana   |  16000 |
+| max      |  21000 |
+| jonathan |  29000 |
++----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----------+------+--------------+--------+-------------------+
+| Name     | age  | place        | salary | email             |
++----------+------+--------------+--------+-------------------+
+| Abhi     |   21 | Eranad       |  18000 | abhi78@gmail.com  |
+| anjana   |   24 | Thamarassery |  16000 | anju867@gmail.com |
+| max      |   22 | Texas        |  21000 | max24@gmail.com   |
+| jonathan |   28 | sanfrancisco |  29000 | jona48@gmail.com  |
+| farhan   |   18 | columbo      |   9000 | faru53@gmail.com  |
++----------+------+--------------+--------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into values('abhi',21,'Ernad',18000,'abhi@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values('abhi',21,'Ernad',18000,'abhi@gmail.com')' at line 1
+mysql> insert into values('abhi',21,'Eranad',18000,'abhi@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values('abhi',21,'Eranad',18000,'abhi@gmail.com')' at line 1
+mysql> insert into employee values('abhi',21,'Eranad',18000,'abhi@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++----------+------+--------------+--------+-------------------+
+| Name     | age  | place        | salary | email             |
++----------+------+--------------+--------+-------------------+
+| Abhi     |   21 | Eranad       |  18000 | abhi78@gmail.com  |
+| anjana   |   24 | Thamarassery |  16000 | anju867@gmail.com |
+| max      |   22 | Texas        |  21000 | max24@gmail.com   |
+| jonathan |   28 | sanfrancisco |  29000 | jona48@gmail.com  |
+| farhan   |   18 | columbo      |   9000 | faru53@gmail.com  |
+| abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
++----------+------+--------------+--------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into employee values('abhi',21,'Eranad',18000,'abhi@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee values('abhi',21,'Eranad',18000,'abhi@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select name,salary from employee group by name;
++----------+--------+
+| name     | salary |
++----------+--------+
+| Abhi     |  18000 |
+| anjana   |  16000 |
+| max      |  21000 |
+| jonathan |  29000 |
+| farhan   |   9000 |
++----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select name,sum(salary) from employee group by name;
++----------+-------------+
+| name     | sum(salary) |
++----------+-------------+
+| Abhi     |       72000 |
+| anjana   |       16000 |
+| max      |       21000 |
+| jonathan |       29000 |
+| farhan   |        9000 |
++----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into employee values('max',21,'venad',18000,'max34@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select name,salary from employee group by name;
++----------+--------+
+| name     | salary |
++----------+--------+
+| Abhi     |  18000 |
+| anjana   |  16000 |
+| max      |  21000 |
+| jonathan |  29000 |
+| farhan   |   9000 |
++----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select name,sum(salary) from employee group by name;
++----------+-------------+
+| name     | sum(salary) |
++----------+-------------+
+| Abhi     |       72000 |
+| anjana   |       16000 |
+| max      |       39000 |
+| jonathan |       29000 |
+| farhan   |        9000 |
++----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee add id varchar(5) first;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | varchar(5)  | YES  |     | NULL    |       |
+| Name   | varchar(20) | YES  |     | NULL    |       |
+| age    | int         | YES  |     | NULL    |       |
+| place  | varchar(12) | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| email  | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee;
++------+----------+------+--------------+--------+-------------------+
+| id   | Name     | age  | place        | salary | email             |
++------+----------+------+--------------+--------+-------------------+
+| NULL | Abhi     |   21 | Eranad       |  18000 | abhi78@gmail.com  |
+| NULL | anjana   |   24 | Thamarassery |  16000 | anju867@gmail.com |
+| NULL | max      |   22 | Texas        |  21000 | max24@gmail.com   |
+| NULL | jonathan |   28 | sanfrancisco |  29000 | jona48@gmail.com  |
+| NULL | farhan   |   18 | columbo      |   9000 | faru53@gmail.com  |
+| NULL | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| NULL | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| NULL | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| NULL | max      |   21 | venad        |  18000 | max34@gmail.com   |
++------+----------+------+--------------+--------+-------------------+
+9 rows in set (0.00 sec)
+
+mysql> alter table employee add country varchar(5) after place;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++------+----------+------+--------------+---------+--------+-------------------+
+| id   | Name     | age  | place        | country | salary | email             |
++------+----------+------+--------------+---------+--------+-------------------+
+| NULL | Abhi     |   21 | Eranad       | NULL    |  18000 | abhi78@gmail.com  |
+| NULL | anjana   |   24 | Thamarassery | NULL    |  16000 | anju867@gmail.com |
+| NULL | max      |   22 | Texas        | NULL    |  21000 | max24@gmail.com   |
+| NULL | jonathan |   28 | sanfrancisco | NULL    |  29000 | jona48@gmail.com  |
+| NULL | farhan   |   18 | columbo      | NULL    |   9000 | faru53@gmail.com  |
+| NULL | abhi     |   21 | Eranad       | NULL    |  18000 | abhi@gmail.com    |
+| NULL | abhi     |   21 | Eranad       | NULL    |  18000 | abhi@gmail.com    |
+| NULL | abhi     |   21 | Eranad       | NULL    |  18000 | abhi@gmail.com    |
+| NULL | max      |   21 | venad        | NULL    |  18000 | max34@gmail.com   |
++------+----------+------+--------------+---------+--------+-------------------+
+9 rows in set (0.00 sec)
+
+mysql> insert into table employee values('india') where name='abhi';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table employee values('india') where name='abhi'' at line 1
+mysql> insert into employee values('india') where name='abhi';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where name='abhi'' at line 1
+mysql> insert into employee value('india') where name='abhi';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where name='abhi'' at line 1
+mysql> select * from employee;
++------+----------+------+--------------+---------+--------+-------------------+
+| id   | Name     | age  | place        | country | salary | email             |
++------+----------+------+--------------+---------+--------+-------------------+
+| NULL | Abhi     |   21 | Eranad       | NULL    |  18000 | abhi78@gmail.com  |
+| NULL | anjana   |   24 | Thamarassery | NULL    |  16000 | anju867@gmail.com |
+| NULL | max      |   22 | Texas        | NULL    |  21000 | max24@gmail.com   |
+| NULL | jonathan |   28 | sanfrancisco | NULL    |  29000 | jona48@gmail.com  |
+| NULL | farhan   |   18 | columbo      | NULL    |   9000 | faru53@gmail.com  |
+| NULL | abhi     |   21 | Eranad       | NULL    |  18000 | abhi@gmail.com    |
+| NULL | abhi     |   21 | Eranad       | NULL    |  18000 | abhi@gmail.com    |
+| NULL | abhi     |   21 | Eranad       | NULL    |  18000 | abhi@gmail.com    |
+| NULL | max      |   21 | venad        | NULL    |  18000 | max34@gmail.com   |
++------+----------+------+--------------+---------+--------+-------------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from employee;
++------+----------+------+--------------+---------+--------+-------------------+
+| id   | Name     | age  | place        | country | salary | email             |
++------+----------+------+--------------+---------+--------+-------------------+
+| NULL | Abhi     |   21 | Eranad       | NULL    |  18000 | abhi78@gmail.com  |
+| NULL | anjana   |   24 | Thamarassery | NULL    |  16000 | anju867@gmail.com |
+| NULL | max      |   22 | Texas        | NULL    |  21000 | max24@gmail.com   |
+| NULL | jonathan |   28 | sanfrancisco | NULL    |  29000 | jona48@gmail.com  |
+| NULL | farhan   |   18 | columbo      | NULL    |   9000 | faru53@gmail.com  |
+| NULL | abhi     |   21 | Eranad       | NULL    |  18000 | abhi@gmail.com    |
+| NULL | abhi     |   21 | Eranad       | NULL    |  18000 | abhi@gmail.com    |
+| NULL | abhi     |   21 | Eranad       | NULL    |  18000 | abhi@gmail.com    |
+| NULL | max      |   21 | venad        | NULL    |  18000 | max34@gmail.com   |
++------+----------+------+--------------+---------+--------+-------------------+
+9 rows in set (0.00 sec)
+
+mysql> alter table employee modify country varchar(15);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++------+----------+------+--------------+---------+--------+-------------------+
+| id   | Name     | age  | place        | country | salary | email             |
++------+----------+------+--------------+---------+--------+-------------------+
+| NULL | Abhi     |   21 | Eranad       | NULL    |  18000 | abhi78@gmail.com  |
+| NULL | anjana   |   24 | Thamarassery | NULL    |  16000 | anju867@gmail.com |
+| NULL | max      |   22 | Texas        | NULL    |  21000 | max24@gmail.com   |
+| NULL | jonathan |   28 | sanfrancisco | NULL    |  29000 | jona48@gmail.com  |
+| NULL | farhan   |   18 | columbo      | NULL    |   9000 | faru53@gmail.com  |
+| NULL | abhi     |   21 | Eranad       | NULL    |  18000 | abhi@gmail.com    |
+| NULL | abhi     |   21 | Eranad       | NULL    |  18000 | abhi@gmail.com    |
+| NULL | abhi     |   21 | Eranad       | NULL    |  18000 | abhi@gmail.com    |
+| NULL | max      |   21 | venad        | NULL    |  18000 | max34@gmail.com   |
++------+----------+------+--------------+---------+--------+-------------------+
+9 rows in set (0.00 sec)
+
+mysql> desc employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | varchar(5)  | YES  |     | NULL    |       |
+| Name    | varchar(20) | YES  |     | NULL    |       |
+| age     | int         | YES  |     | NULL    |       |
+| place   | varchar(12) | YES  |     | NULL    |       |
+| country | varchar(15) | YES  |     | NULL    |       |
+| salary  | int         | YES  |     | NULL    |       |
+| email   | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> alter table employee drop column country;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | varchar(5)  | YES  |     | NULL    |       |
+| Name   | varchar(20) | YES  |     | NULL    |       |
+| age    | int         | YES  |     | NULL    |       |
+| place  | varchar(12) | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| email  | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee;
++------+----------+------+--------------+--------+-------------------+
+| id   | Name     | age  | place        | salary | email             |
++------+----------+------+--------------+--------+-------------------+
+| NULL | Abhi     |   21 | Eranad       |  18000 | abhi78@gmail.com  |
+| NULL | anjana   |   24 | Thamarassery |  16000 | anju867@gmail.com |
+| NULL | max      |   22 | Texas        |  21000 | max24@gmail.com   |
+| NULL | jonathan |   28 | sanfrancisco |  29000 | jona48@gmail.com  |
+| NULL | farhan   |   18 | columbo      |   9000 | faru53@gmail.com  |
+| NULL | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| NULL | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| NULL | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| NULL | max      |   21 | venad        |  18000 | max34@gmail.com   |
++------+----------+------+--------------+--------+-------------------+
+9 rows in set (0.00 sec)
+
+mysql> update employee set id='1000' where Name='Abhi';
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> update employee set id='1001' where Name='Anjana';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set id='1003' where Name='max';
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update employee set id='1004' where Name='farhan';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++------+----------+------+--------------+--------+-------------------+
+| id   | Name     | age  | place        | salary | email             |
++------+----------+------+--------------+--------+-------------------+
+| 1000 | Abhi     |   21 | Eranad       |  18000 | abhi78@gmail.com  |
+| 1001 | anjana   |   24 | Thamarassery |  16000 | anju867@gmail.com |
+| 1003 | max      |   22 | Texas        |  21000 | max24@gmail.com   |
+| NULL | jonathan |   28 | sanfrancisco |  29000 | jona48@gmail.com  |
+| 1004 | farhan   |   18 | columbo      |   9000 | faru53@gmail.com  |
+| 1000 | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| 1000 | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| 1000 | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| 1003 | max      |   21 | venad        |  18000 | max34@gmail.com   |
++------+----------+------+--------------+--------+-------------------+
+9 rows in set (0.00 sec)
+
+mysql> update employee set id='1006' where Name='jonathan';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++------+----------+------+--------------+--------+-------------------+
+| id   | Name     | age  | place        | salary | email             |
++------+----------+------+--------------+--------+-------------------+
+| 1000 | Abhi     |   21 | Eranad       |  18000 | abhi78@gmail.com  |
+| 1001 | anjana   |   24 | Thamarassery |  16000 | anju867@gmail.com |
+| 1003 | max      |   22 | Texas        |  21000 | max24@gmail.com   |
+| 1006 | jonathan |   28 | sanfrancisco |  29000 | jona48@gmail.com  |
+| 1004 | farhan   |   18 | columbo      |   9000 | faru53@gmail.com  |
+| 1000 | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| 1000 | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| 1000 | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| 1003 | max      |   21 | venad        |  18000 | max34@gmail.com   |
++------+----------+------+--------------+--------+-------------------+
+9 rows in set (0.00 sec)
+
+mysql> update employee set id='1007' where email='abhi@gmail.com';
+Query OK, 3 rows affected (0.00 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from employee;
++------+----------+------+--------------+--------+-------------------+
+| id   | Name     | age  | place        | salary | email             |
++------+----------+------+--------------+--------+-------------------+
+| 1000 | Abhi     |   21 | Eranad       |  18000 | abhi78@gmail.com  |
+| 1001 | anjana   |   24 | Thamarassery |  16000 | anju867@gmail.com |
+| 1003 | max      |   22 | Texas        |  21000 | max24@gmail.com   |
+| 1006 | jonathan |   28 | sanfrancisco |  29000 | jona48@gmail.com  |
+| 1004 | farhan   |   18 | columbo      |   9000 | faru53@gmail.com  |
+| 1007 | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| 1007 | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| 1007 | abhi     |   21 | Eranad       |  18000 | abhi@gmail.com    |
+| 1003 | max      |   21 | venad        |  18000 | max34@gmail.com   |
++------+----------+------+--------------+--------+-------------------+
+9 rows in set (0.00 sec)
+
+mysql> update employee set email=replace(email,'@gmail.com','@cltoneteam.com');
+ERROR 1406 (22001): Data too long for column 'email' at row 1
+mysql> alter table employee modify email varchar(25);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update employee set email=replace(email,'@gmail.com','@cltoneteam.com');
+Query OK, 9 rows affected (0.00 sec)
+Rows matched: 9  Changed: 9  Warnings: 0
+
+mysql> select * from employee;
++------+----------+------+--------------+--------+------------------------+
+| id   | Name     | age  | place        | salary | email                  |
++------+----------+------+--------------+--------+------------------------+
+| 1000 | Abhi     |   21 | Eranad       |  18000 | abhi78@cltoneteam.com  |
+| 1001 | anjana   |   24 | Thamarassery |  16000 | anju867@cltoneteam.com |
+| 1003 | max      |   22 | Texas        |  21000 | max24@cltoneteam.com   |
+| 1006 | jonathan |   28 | sanfrancisco |  29000 | jona48@cltoneteam.com  |
+| 1004 | farhan   |   18 | columbo      |   9000 | faru53@cltoneteam.com  |
+| 1007 | abhi     |   21 | Eranad       |  18000 | abhi@cltoneteam.com    |
+| 1007 | abhi     |   21 | Eranad       |  18000 | abhi@cltoneteam.com    |
+| 1007 | abhi     |   21 | Eranad       |  18000 | abhi@cltoneteam.com    |
+| 1003 | max      |   21 | venad        |  18000 | max34@cltoneteam.com   |
++------+----------+------+--------------+--------+------------------------+
+9 rows in set (0.00 sec)
+
+mysql> delete from employee where id=1007;
+Query OK, 3 rows affected (0.00 sec)
+
+mysql> select * from employee;
++------+----------+------+--------------+--------+------------------------+
+| id   | Name     | age  | place        | salary | email                  |
++------+----------+------+--------------+--------+------------------------+
+| 1000 | Abhi     |   21 | Eranad       |  18000 | abhi78@cltoneteam.com  |
+| 1001 | anjana   |   24 | Thamarassery |  16000 | anju867@cltoneteam.com |
+| 1003 | max      |   22 | Texas        |  21000 | max24@cltoneteam.com   |
+| 1006 | jonathan |   28 | sanfrancisco |  29000 | jona48@cltoneteam.com  |
+| 1004 | farhan   |   18 | columbo      |   9000 | faru53@cltoneteam.com  |
+| 1003 | max      |   21 | venad        |  18000 | max34@cltoneteam.com   |
++------+----------+------+--------------+--------+------------------------+
+6 rows in set (0.00 sec)
+
+mysql> update employee set email=replace(email,'@gmail.com','@headcltoneteam.com') where name='anjana';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from employee;
++------+----------+------+--------------+--------+------------------------+
+| id   | Name     | age  | place        | salary | email                  |
++------+----------+------+--------------+--------+------------------------+
+| 1000 | Abhi     |   21 | Eranad       |  18000 | abhi78@cltoneteam.com  |
+| 1001 | anjana   |   24 | Thamarassery |  16000 | anju867@cltoneteam.com |
+| 1003 | max      |   22 | Texas        |  21000 | max24@cltoneteam.com   |
+| 1006 | jonathan |   28 | sanfrancisco |  29000 | jona48@cltoneteam.com  |
+| 1004 | farhan   |   18 | columbo      |   9000 | faru53@cltoneteam.com  |
+| 1003 | max      |   21 | venad        |  18000 | max34@cltoneteam.com   |
++------+----------+------+--------------+--------+------------------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table employee drop column age;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++------+----------+--------------+--------+------------------------+
+| id   | Name     | place        | salary | email                  |
++------+----------+--------------+--------+------------------------+
+| 1000 | Abhi     | Eranad       |  18000 | abhi78@cltoneteam.com  |
+| 1001 | anjana   | Thamarassery |  16000 | anju867@cltoneteam.com |
+| 1003 | max      | Texas        |  21000 | max24@cltoneteam.com   |
+| 1006 | jonathan | sanfrancisco |  29000 | jona48@cltoneteam.com  |
+| 1004 | farhan   | columbo      |   9000 | faru53@cltoneteam.com  |
+| 1003 | max      | venad        |  18000 | max34@cltoneteam.com   |
++------+----------+--------------+--------+------------------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into employee values('max','venad',18000,'max34@gmail.com');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into employee values('max',null,'venad',18000,'max34@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from employee;
++------+----------+--------------+--------+------------------------+
+| id   | Name     | place        | salary | email                  |
++------+----------+--------------+--------+------------------------+
+| 1000 | Abhi     | Eranad       |  18000 | abhi78@cltoneteam.com  |
+| 1001 | anjana   | Thamarassery |  16000 | anju867@cltoneteam.com |
+| 1003 | max      | Texas        |  21000 | max24@cltoneteam.com   |
+| 1006 | jonathan | sanfrancisco |  29000 | jona48@cltoneteam.com  |
+| 1004 | farhan   | columbo      |   9000 | faru53@cltoneteam.com  |
+| 1003 | max      | venad        |  18000 | max34@cltoneteam.com   |
+| max  | NULL     | venad        |  18000 | max34@gmail.com        |
++------+----------+--------------+--------+------------------------+
+7 rows in set (0.00 sec)
+
+mysql> delete from employee where id='max';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from employee;
++------+----------+--------------+--------+------------------------+
+| id   | Name     | place        | salary | email                  |
++------+----------+--------------+--------+------------------------+
+| 1000 | Abhi     | Eranad       |  18000 | abhi78@cltoneteam.com  |
+| 1001 | anjana   | Thamarassery |  16000 | anju867@cltoneteam.com |
+| 1003 | max      | Texas        |  21000 | max24@cltoneteam.com   |
+| 1006 | jonathan | sanfrancisco |  29000 | jona48@cltoneteam.com  |
+| 1004 | farhan   | columbo      |   9000 | faru53@cltoneteam.com  |
+| 1003 | max      | venad        |  18000 | max34@cltoneteam.com   |
++------+----------+--------------+--------+------------------------+
+6 rows in set (0.00 sec)
+
+mysql> create colleges(college_id int primary key,college varchar(20) not null,college_name varchar(50),no_of_students int(10) check(no_of_students>500));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'colleges(college_id int primary key,college varchar(20) not null,college_name va' at line 1
+mysql> create colleges(college_id int primary key,college varchar(20) not null,college_name varchar(50),no_of_students int(10) check no_of_students>500);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'colleges(college_id int primary key,college varchar(20) not null,college_name va' at line 1
+mysql> create colleges(college_id int primary key,college varchar(20) not null,college_name varchar(50),no_of_students int(10) check (no_of_students>500));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'colleges(college_id int primary key,college varchar(20) not null,college_name va' at line 1
+mysql> create table colleges(college_id int primary key,college varchar(20) not null,college_name varchar(50),no_of_students int(10) check (no_of_students>500));
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> select * from colleges;
+Empty set (0.00 sec)
+
+mysql> desc colleges;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| college_id     | int         | NO   | PRI | NULL    |       |
+| college        | varchar(20) | NO   |     | NULL    |       |
+| college_name   | varchar(50) | YES  |     | NULL    |       |
+| no_of_students | int         | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into colleges(1000,'CET','engg college trivandrum',200);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1000,'CET','engg college trivandrum',200)' at line 1
+mysql> insert into colleges(1000,'CET','engg college',200);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1000,'CET','engg college',200)' at line 1
+mysql> insert into colleges(1000,'CET','engg college',1200);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1000,'CET','engg college',1200)' at line 1
+mysql> select * from colleges;
+Empty set (0.00 sec)
+
+mysql> insert into colleges values(1000,'CET','engg college trivandrum',200);
+ERROR 3819 (HY000): Check constraint 'colleges_chk_1' is violated.
+mysql> insert into table colleges values(1000,'CET','engg college trivandrum',200);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table colleges values(1000,'CET','engg college trivandrum',200)' at line 1
+mysql> insert into colleges values(1000,'CET','engg college trivandrum',200);
+ERROR 3819 (HY000): Check constraint 'colleges_chk_1' is violated.
+mysql> insert into colleges values(1000,'CET','engg college trivandrum',800);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into colleges values(1020,'GEC','engg college thrissur',1800);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> create index college_index on colleges(college_code);
+ERROR 1072 (42000): Key column 'college_code' doesn't exist in table
+mysql> create index college_index on colleges(college_id);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from colleges;
++----------+------------+---------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table    | Non_unique | Key_name      | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++----------+------------+---------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| colleges |          0 | PRIMARY       |            1 | college_id  | A         |           2 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| colleges |          1 | college_index |            1 | college_id  | A         |           2 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
++----------+------------+---------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+2 rows in set (0.01 sec)
+
+mysql> show index from colleges;

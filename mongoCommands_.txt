@@ -1,0 +1,81 @@
+>create new database
+>use myNewDatabase
+>list databases
+>show dbs
+======================================================================
+>for display:
+>db.collection.find()
+>db.collection.find({ key: "value" })
+==========================================--------------------========
+>insert:
+>db.collection.insertOne({ key1: "value1", key2: "value2" })
+>db.collection.insertMany([
+  { key1: "value1", key2: "value2" },
+  { key1: "value3", key2: "value4" }
+])
+
+---------------------------------------------------------------------
+
+>update:
+>db.collection.updateOne(
+  { key: "value" }, // filter
+  { $set: { fieldToUpdate: "newValue" } } // update
+)
+
+>db.collection.updateMany(
+  { key: "value" }, 
+  { $set: { fieldToUpdate: "newValue" } }
+)
+ ---------------------------------------------------------------------
+>remove field of documents://
+>db.collection.updateMany({}, { $unset: { fieldToRemove: "" } })
+----------------------------------------------------------------------
+ >sort 
+ >db.collection.find().sort({ fieldToSort: 1 })//ascending
+ ?db.collection.find().sort({ fieldToSort: -1 })//descending
+-----------------------------------------------------------------------
+>display one column
+>db.collection.find({}, { fieldToDisplay: 1, _id: 0 })
+========================================================================
+>limit:restrict no of document displayed
+>db.collection.find(query).limit(number)
+========================================================================
+>skip:method skips a specified number of documents in the result set.
+>db.collection.find({}).skip(10)
+======================================================================
+>greater than,less than ,greater than equal to,less than equal to:
+>db.collection.find({ age: { $gt: 18 } })
+>db.collection.find({ age: { $lt: 18 } })
+>db.collection.find({ age: { $lt: 18 } })
+>db.collection.find({ field: { $lte: value } })
+>db.collection.find({ age: { $gte: 18, $lte: 30 } })
+=======================================================================
+>and, or:
+>db.collection.find({ $and: [ { condition1 }, { condition2 }, ... ] })
+>db.collection.find({
+    $and: [
+       { age: { $gt: 18 } },
+       { status: "active" }
+    ]
+ })
+ =====================================================================
+>or:
+ >db.collection.find({
+    $or: [
+       { age: { $lt: 18 } },
+       { status: "inactive" }
+    ]
+ })
+ 
+
+
+
+
+
+
+
+
+
+
+
+
