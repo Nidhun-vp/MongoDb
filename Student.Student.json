@@ -1,0 +1,112 @@
+[{
+  "_id": {
+    "$oid": "672a5006805be589bc5e739f"
+  },
+  "name": "sai",
+  "age": 18,
+  "class": "S2B",
+  "Details": {
+    "place": "kochi",
+    "internal_mark": 180
+  },
+  "address": {
+    "pin": 654321,
+    "city": "kakkanad"
+  }
+},
+{
+  "_id": {
+    "$oid": "672a530f805be589bc5e73a0"
+  },
+  "name": "sumod",
+  "age": 17,
+  "class": "C2B",
+  "Details": {
+    "place": "mukkam",
+    "internal_mark": 150
+  },
+  "address": {
+    "pin": 654509,
+    "city": "kozhikode"
+  }
+},
+{
+  "_id": {
+    "$oid": "672a530f805be589bc5e73a1"
+  },
+  "name": "varun",
+  "age": 17,
+  "class": "H2B",
+  "Details": {
+    "place": "Eranad",
+    "internal_mark": 180
+  },
+  "address": {
+    "pin": 645678,
+    "city": "Malappuram"
+  }
+},
+{
+  "_id": {
+    "$oid": "672a530f805be589bc5e73a2"
+  },
+  "name": "tina",
+  "age": 17,
+  "class": "S1B",
+  "Details": {
+    "place": "chalakkudy",
+    "internal_mark": 175
+  },
+  "address": {
+    "pin": 643187,
+    "city": "Thrissur"
+  }
+},
+{
+  "_id": {
+    "$oid": "672a5440805be589bc5e73a3"
+  },
+  "name": "helena",
+  "age": 17,
+  "class": "C1B",
+  "Details": {
+    "place": "Meppadi",
+    "internal_mark": 160
+  },
+  "address": {
+    "pin": 634507,
+    "city": "Wayannad"
+  }
+},
+{
+  "_id": {
+    "$oid": "672a5440805be589bc5e73a4"
+  },
+  "name": "Max",
+  "age": 17,
+  "class": "H1B",
+  "Details": {
+    "place": "kottarakara",
+    "internal_mark": 190
+  },
+  "address": {
+    "pin": 695686,
+    "city": "Kollam"
+  }
+},
+{
+  "_id": {
+    "$oid": "672a5440805be589bc5e73a5"
+  },
+  "name": "Mira",
+  "age": 18,
+  "class": "S1A",
+  "Details": {
+    "place": "U-city",
+    "internal_mark": 175
+  },
+  "address": {
+    "pin": 643187,
+    "city": "Malappuram"
+  }
+}]
