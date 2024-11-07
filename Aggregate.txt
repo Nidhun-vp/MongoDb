@@ -1,0 +1,70 @@
+insert into employee-
+---------------------
+> db. Employee.insertMany ([
+{"_id": "emp1", "name": "John",place:"calicut"},
+{"_id": "emp2", "name": "sam", place:"tvm"},
+{"_id": "emp3", "name": "nihal",place:"calcutta"}
+])
+
+
+.....added 10 fields like these^
+
+==============================
+aggregate:for join tables.
+
+db.Salary.insertMany([
+{"employee_id":'emp1',"monthly_salary":50000},
+{ "employee_id":'emp2',"monthly_salary":60000},
+{ "employee_id": 'emp3',"monthly_salary":45000},
+{"employee_id":'emp4',"monthly_salary":50000},
+{ "employee_id":'emp5',"monthly_salary":60000},
+{ "employee_id": 'emp6',"monthly_salary":45000},
+{ "employee_id":'emp8',"monthly_salary":60000},
+{ "employee_id": 'emp10',"monthly_salary":45000},
+{"employee_id":'emp12',"monthly_salary":50000},
+{ "employee_id":'emp18',"monthly_salary":60000}
+
+]);
+>//lookup
+db.employee.aggregate([{"$lookup":{"from":"Salary","localField":"_id","foreignField":"employee_id","as":"salary_details"}}]);
+
+//output for lookup--new field salary details added for each field
+{
+  _id: 'emp1',
+  name: 'john',
+  place: 'calicut',
+  salary_details: [
+    {
+      _id: ObjectId('672c59c8f77f588d336a9887'),
+      employee_id: 'emp1',
+      monthly_salary: 50000
+    }
+  ]
+}
+
+>//lookup for Salary
+db.Salary.aggregate([
+{
+$lookup: {
+from: "employee",
+localField: "employee_id",
+foreignField: "_id",
+as: "employee_info"}}]);
+//output-new field employee_info added in salary table for each field.
+
+{
+  _id: ObjectId('672c59c8f77f588d336a9887'),
+  employee_id: 'emp1',
+  monthly_salary: 50000,
+  employee_info: [
+    {
+      _id: 'emp1',
+      name: 'john',
+      place: 'calicut'
+    }
+  ]
+}
+
+//
+
+
